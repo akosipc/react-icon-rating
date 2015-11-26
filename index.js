@@ -7,9 +7,15 @@ var Icon = React.createClass({displayName: "Icon",
       cursor : 'pointer'
     };
     var className = this.props.toggled ? this.props.toggledClassName : this.props.untoggledClassName;
-    return (
-      React.createElement("i", {className: className, onMouseMove: this.props.onMouseEnter, style: iStyle, onClick: this.props.onClickRating})
-    );
+    if ( this.props.index == 3) {
+      return (
+        React.createElement("i", {className: this.props.untoggledClassName, onMouseMove: this.props.onMouseEnter, style: iStyle })
+      );
+    } else {
+      return (
+        React.createElement("i", {className: className, onMouseMove: this.props.onMouseEnter, style: iStyle, onClick: this.props.onClickRating})
+      );
+    }
   }
 });
 
@@ -61,7 +67,7 @@ var IconRating = React.createClass({displayName: "IconRating",
           halfClassName = this.props.halfClassName;
       }
       ratings.push(
-          React.createElement(Icon, {key: i, toggledClassName: halfClassName || this.props.toggledClassName, untoggledClassName: this.props.untoggledClassName, onMouseEnter: onMouseEnter.bind(this,i), onClickRating: onClickRating.bind(this,i), toggled: toggled})
+          React.createElement(Icon, {key: i, index: i, toggledClassName: halfClassName || this.props.toggledClassName, untoggledClassName: this.props.untoggledClassName, onMouseEnter: onMouseEnter.bind(this,i), onClickRating: onClickRating.bind(this,i), toggled: toggled})
       );
     }
     return (
@@ -73,3 +79,4 @@ var IconRating = React.createClass({displayName: "IconRating",
 });
 
 module.exports = IconRating;
+
